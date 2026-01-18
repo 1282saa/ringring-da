@@ -1,28 +1,16 @@
-# 영어학습 서비스 VOC 분석 결과
+# 📊 영어학습 서비스 VOC 분석 결과
 
 > 2026 링글 공모전 | 10개 서비스 7,604건 분석
 
 ---
 
-## 📊 분석 결과 한눈에 보기
+## 🎯 핵심 발견
 
-### 핵심 발견 TOP 3
-
-| 순위 | 발견 | 근거 데이터 |
-|------|------|------------|
+| # | 발견 | 근거 |
+|---|------|------|
 | 1 | **앱이 발목을 잡고 있다** | 앱 리뷰 부정률 38% vs 블로그 긍정률 80% |
-| 2 | **스픽이 최대 경쟁자** | 링글 리뷰에서 스픽 99회 언급 (1위) |
-| 3 | **비즈니스 영어가 기회** | 발표(452), 면접(288), 회의(236) 니즈 |
-
-### 고객 문제 TOP 5
-
-| 순위 | 문제 | 언급 건수 | 심각도 |
-|------|------|----------|--------|
-| 1 | 튜터 품질 편차 | 336건 | 🟡 |
-| 2 | 가격 대비 가치 의문 | 329건 | 🔴 |
-| 3 | 예약 경쟁/시간대 제한 | 291건 | 🔴 |
-| 4 | 학습 지속성 어려움 | 237건 | 🟡 |
-| 5 | 앱 안정성 문제 | 30건 (부정리뷰 38%) | 🔴 |
+| 2 | **스픽이 최대 경쟁자** | 스픽 99회 언급 (경쟁사 1위) |
+| 3 | **비즈니스 영어가 기회** | 발표+면접+회의 = 976건 |
 
 ---
 
@@ -30,194 +18,122 @@
 
 ```
 analysis/
-├── README.md                    ← 현재 파일
 │
-├── reports/                     ← 최종 보고서
-│   ├── 고객문제_분석보고서.docx      ★ 고객 문제 중심 (추천)
-│   ├── VOC_분석_보고서_논문형식.docx  ★ 논문 형식 전체 보고서
-│   ├── VOC_분석_보고서_전체.docx
-│   ├── FULL_REPORT.html          8페이지 상세 대시보드
-│   ├── DASHBOARD.html            요약 대시보드
-│   ├── DASHBOARD_DETAIL.html     상세 대시보드
-│   ├── REPORT_FINAL.pdf          PDF 보고서
-│   ├── REPORT_FINAL.md           마크다운 최종 보고서
-│   ├── DEEP_ANALYSIS_REPORT.md   심층 분석 보고서
-│   ├── FINAL_INSIGHTS.md         최종 인사이트
-│   ├── QUALITATIVE_INSIGHTS.md   정성 분석 결과
-│   ├── ANALYSIS_FRAMEWORK.md     분석 프레임워크
-│   ├── VOC_ANALYSIS_REPORT.md    VOC 분석 리포트
-│   ├── DATA_COLLECTION_FRAMEWORK.md  데이터 수집 가이드
-│   ├── REVIEW_ANALYSIS_BEST_PRACTICES.md  분석 방법론
-│   ├── INSIGHT_SUMMARY.md        인사이트 요약
-│   └── detailed/                 상세 분석 문서
-│       ├── 01_keyword_frequency.md    키워드 빈도 분석
-│       ├── 01_tfidf_unique_keywords.md TF-IDF 분석
-│       ├── 02_sentiment_distribution.md 감성 분포 분석
-│       ├── 01_cooccurrence_network.md  동시출현 분석
-│       ├── 02_churn_pattern.md         이탈 패턴 분석
-│       └── 03_hidden_needs.md          숨겨진 니즈 분석
+├── 📄 01_final_reports/         ★ 최종 보고서 (여기부터 보세요!)
+│   ├── 고객문제_분석보고서.docx       → 고객 문제 중심 분석
+│   ├── VOC_분석_보고서_논문형식.docx  → 논문 형식 전체 분석
+│   ├── VOC_분석_보고서_전체.docx     → 전체 요약
+│   └── REPORT_FINAL.pdf             → PDF 버전
 │
-├── data/                        ← 분석 데이터 (CSV)
-│   ├── sentiment_distribution.csv    서비스별 감성 분석
-│   ├── painpoint_structured.csv      페인포인트 구조화
-│   ├── user_segments.csv             유저 세그먼트
-│   ├── competitor_mentions.csv       경쟁사 언급 빈도
-│   ├── hidden_needs.csv              숨겨진 니즈
-│   ├── keyword_frequency_cleaned.csv 키워드 빈도 (정제)
-│   ├── keyword_frequency_all.csv     키워드 빈도 (전체)
-│   ├── tfidf_unique_keywords.csv     TF-IDF 고유 키워드
-│   ├── cooccurrence_network.csv      동시출현 네트워크
-│   ├── category_frequency.csv        카테고리 빈도
-│   └── company_text_analysis_summary.csv 서비스별 요약
+├── 🖥️ 02_dashboards/            대시보드 (웹 브라우저로 열기)
+│   ├── DASHBOARD.html               → 요약 대시보드
+│   ├── DASHBOARD_DETAIL.html        → 상세 대시보드
+│   └── FULL_REPORT.html             → 8페이지 풀 리포트
 │
-├── visualizations/              ← 시각화 차트 (11개)
-│   ├── 01_wordcloud.png              워드클라우드
-│   ├── 01_painpoint_comparison.png   페인포인트 비교
-│   ├── 02_keyword_frequency.png      키워드 빈도 차트
-│   ├── 02_user_segments.png          유저 세그먼트
-│   ├── 03_competitor_heatmap.png     경쟁사 히트맵
-│   ├── 03_sentiment_distribution.png 감성 분포
-│   ├── 04_keyword_network.png        키워드 네트워크
-│   ├── 04_sentiment_comparison.png   감성 비교
-│   ├── 05_competitor_heatmap.png     경쟁사 분석
-│   ├── 05_positioning_map.png        포지셔닝 맵
-│   └── 06_hidden_needs.png           숨겨진 니즈
+├── 💡 03_insights/              인사이트 문서
+│   ├── FINAL_INSIGHTS.md            → 최종 인사이트
+│   ├── DEEP_ANALYSIS_REPORT.md      → 심층 분석
+│   ├── QUALITATIVE_INSIGHTS.md      → 정성 분석
+│   ├── INSIGHT_SUMMARY.md           → 인사이트 요약
+│   └── REPORT_FINAL.md              → 마크다운 보고서
 │
-└── scripts/                     ← 분석 스크립트
-    ├── create_customer_problem_report.py
-    ├── create_academic_report.py
-    ├── create_docx_report.py
-    ├── deep_analysis.py
-    └── data_audit.py
+├── 🔬 04_detailed_analysis/     상세 분석 (주제별)
+│   ├── market_overview/             → 시장 개요
+│   │   └── 01_keyword_frequency.md
+│   ├── company_comparison/          → 서비스 비교
+│   │   ├── 01_tfidf_unique_keywords.md
+│   │   └── 02_sentiment_distribution.md
+│   └── deep_insights/               → 심층 인사이트
+│       ├── 01_cooccurrence_network.md
+│       ├── 02_churn_pattern.md
+│       └── 03_hidden_needs.md
+│
+├── 📈 05_data/                  분석 데이터 (CSV)
+│   ├── sentiment_distribution.csv   → 감성 분석 결과
+│   ├── competitor_mentions.csv      → 경쟁사 언급
+│   ├── hidden_needs.csv             → 숨겨진 니즈
+│   ├── painpoint_structured.csv     → 페인포인트
+│   ├── user_segments.csv            → 유저 세그먼트
+│   ├── tfidf_unique_keywords.csv    → TF-IDF 키워드
+│   ├── keyword_frequency_*.csv      → 키워드 빈도
+│   └── ...
+│
+├── 📊 06_visualizations/        시각화 차트 (PNG)
+│   ├── 01_wordcloud.png             → 워드클라우드
+│   ├── 02_keyword_frequency.png     → 키워드 빈도
+│   ├── 03_sentiment_distribution.png → 감성 분포
+│   ├── 04_keyword_network.png       → 키워드 네트워크
+│   ├── 05_positioning_map.png       → 포지셔닝 맵
+│   └── ...
+│
+├── 🛠️ 07_scripts/               분석 스크립트 (Python)
+│   ├── create_customer_problem_report.py
+│   ├── create_academic_report.py
+│   └── ...
+│
+└── 📚 08_methodology/           방법론 문서
+    ├── ANALYSIS_FRAMEWORK.md        → 분석 프레임워크
+    ├── DATA_COLLECTION_FRAMEWORK.md → 데이터 수집 가이드
+    ├── REVIEW_ANALYSIS_BEST_PRACTICES.md → 분석 방법론
+    └── VOC_ANALYSIS_REPORT.md       → VOC 분석 가이드
 ```
-
----
-
-## 📖 보고서 가이드
-
-### 어떤 보고서를 봐야 하나요?
-
-| 목적 | 추천 보고서 | 파일 |
-|------|------------|------|
-| **고객 문제 파악** | 고객문제 분석보고서 | `reports/고객문제_분석보고서.docx` |
-| **전체 분석 결과** | 논문형식 보고서 | `reports/VOC_분석_보고서_논문형식.docx` |
-| **빠른 확인** | 대시보드 | `reports/DASHBOARD.html` |
-| **상세 데이터** | 풀 리포트 | `reports/FULL_REPORT.html` |
-
-### 보고서 열기
-
-```bash
-# 고객문제 분석보고서 (추천)
-open analysis/reports/고객문제_분석보고서.docx
-
-# 대시보드 (웹 브라우저)
-open analysis/reports/DASHBOARD.html
-
-# 논문형식 전체 보고서
-open analysis/reports/VOC_분석_보고서_논문형식.docx
-```
-
----
-
-## 📈 데이터 설명
-
-### sentiment_distribution.csv
-서비스별 감성 분석 결과
-
-| 컬럼 | 설명 |
-|------|------|
-| company | 서비스명 |
-| total | 전체 건수 |
-| positive | 긍정 건수 |
-| negative | 부정 건수 |
-| positive_pct | 긍정률 (%) |
-
-### painpoint_structured.csv
-카테고리별 페인포인트 분류
-
-| 컬럼 | 설명 |
-|------|------|
-| category | 페인포인트 카테고리 |
-| keyword | 관련 키워드 |
-| count | 언급 빈도 |
-| example | 실제 텍스트 예시 |
-
-### competitor_mentions.csv
-경쟁사 언급 분석
-
-| 컬럼 | 설명 |
-|------|------|
-| service | 분석 대상 서비스 |
-| competitor | 언급된 경쟁사 |
-| mentions | 언급 횟수 |
-
-### hidden_needs.csv
-숨겨진 니즈 발굴
-
-| 컬럼 | 설명 |
-|------|------|
-| need_type | 니즈 유형 |
-| count | 언급 빈도 |
-
----
-
-## 🔬 분석 방법론
-
-### 1. 데이터 수집
-- **대상**: 10개 영어학습 서비스
-- **채널**: 앱스토어, 플레이스토어, 블로그, 커뮤니티, SNS
-- **도구**: Python (Selenium, BeautifulSoup)
-
-### 2. 데이터 전처리
-- 중복 제거
-- 한국어 필터링
-- 스팸/광고 제거
-- 텍스트 정규화
-
-### 3. 분석 기법
-- **감성 분석**: 사전 기반 + ML 하이브리드
-- **키워드 분석**: 형태소 분석 (KoNLPy)
-- **TF-IDF**: 서비스별 특징 키워드 추출
-- **페인포인트 분류**: 키워드 기반 + 문맥 분석
-
-### 4. 검증
-- 부정 리뷰 100건 전수 분석
-- 실제 원문 텍스트 인용
-- 데이터 출처 파일명 명시
-
----
-
-## 📊 주요 수치
-
-| 항목 | 수치 |
-|------|------|
-| 총 분석 데이터 | 7,604건 |
-| 분석 서비스 | 10개 |
-| 링글 데이터 | 1,631건 |
-| 링글 긍정률 | 66.6% |
-| 링글 평균 평점 | 3.19 |
 
 ---
 
 ## 🚀 Quick Start
 
+### 1. 최종 보고서 열기 (추천)
 ```bash
-# 1. 대시보드 열기
-open analysis/reports/DASHBOARD.html
+open 01_final_reports/고객문제_분석보고서.docx
+```
 
-# 2. 고객문제 보고서 열기
-open analysis/reports/고객문제_분석보고서.docx
+### 2. 대시보드 열기
+```bash
+open 02_dashboards/DASHBOARD.html
+```
 
-# 3. 데이터 확인
-cat analysis/data/sentiment_distribution.csv
+### 3. 인사이트 확인
+```bash
+cat 03_insights/FINAL_INSIGHTS.md
 ```
 
 ---
 
-## 📞 문의
+## 📋 보고서 선택 가이드
 
-2026 링글 공모전 제출용 분석 자료입니다.
+| 목적 | 파일 | 경로 |
+|------|------|------|
+| **고객 문제 파악** | 고객문제 분석보고서 | `01_final_reports/` |
+| **전체 분석 확인** | 논문형식 보고서 | `01_final_reports/` |
+| **빠른 확인** | 대시보드 | `02_dashboards/DASHBOARD.html` |
+| **데이터 확인** | CSV 파일들 | `05_data/` |
+| **방법론 이해** | 프레임워크 문서 | `08_methodology/` |
 
 ---
 
-*Generated by Claude Code | 2026-01-18*
+## 📊 주요 데이터 설명
+
+| 파일 | 내용 | 주요 컬럼 |
+|------|------|----------|
+| `sentiment_distribution.csv` | 서비스별 감성 분석 | company, positive_pct, negative_pct |
+| `competitor_mentions.csv` | 경쟁사 언급 빈도 | service, competitor, mentions |
+| `hidden_needs.csv` | 숨겨진 니즈 | need_type, count |
+| `painpoint_structured.csv` | 페인포인트 구조화 | category, keyword, count |
+| `user_segments.csv` | 유저 세그먼트 | segment, keywords, count |
+
+---
+
+## 📈 시각화 목록
+
+| 파일 | 설명 |
+|------|------|
+| `01_wordcloud.png` | 전체 키워드 워드클라우드 |
+| `02_keyword_frequency.png` | TOP 키워드 빈도 차트 |
+| `03_sentiment_distribution.png` | 서비스별 감성 분포 |
+| `04_keyword_network.png` | 키워드 동시출현 네트워크 |
+| `05_positioning_map.png` | 경쟁 포지셔닝 맵 |
+| `06_hidden_needs.png` | 숨겨진 니즈 차트 |
+
+---
+
+*Last Updated: 2026-01-18*
