@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영어학습 서비스 VOC 분석 - 상세 대시보드</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f1a; color: #fff; font-size: 14px; }
+        .page { min-height: 100vh; padding: 30px; page-break-after: always; }
+        .page-title { font-size: 28px; font-weight: bold; margin-bottom: 25px; padding-bottom: 15px; border-bottom: 3px solid #667eea; }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+        .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 15px; }
+        .card { background: #1a1a2e; border-radius: 12px; padding: 20px; }
+        .card-title { font-size: 16px; font-weight: bold; color: #667eea; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .stat-big { font-size: 48px; font-weight: bold; color: #4ECDC4; }
+        .stat-medium { font-size: 32px; font-weight: bold; }
+        .stat-label { font-size: 13px; color: #888; margin-top: 5px; }
+        .highlight { color: #FF6B6B; }
+        .highlight-green { color: #4ECDC4; }
+        .highlight-yellow { color: #FFEAA7; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px 8px; text-align: left; border-bottom: 1px solid #333; }
+        th { background: #252540; color: #667eea; font-weight: 600; }
+        tr:hover { background: #252540; }
+        .bar { height: 20px; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 4px; display: inline-block; }
+        .bar-red { background: linear-gradient(90deg, #FF6B6B, #ee5a5a); }
+        .bar-green { background: linear-gradient(90deg, #4ECDC4, #44a8a0); }
+        .tag { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: bold; }
+        .tag-danger { background: #FF6B6B; color: #fff; }
+        .tag-warning { background: #FFEAA7; color: #333; }
+        .tag-success { background: #4ECDC4; color: #333; }
+        .quote { background: #252540; padding: 12px 15px; border-left: 4px solid #667eea; margin: 8px 0; border-radius: 0 8px 8px 0; font-style: italic; font-size: 13px; color: #ccc; }
+        .number-box { text-align: center; padding: 15px; background: #252540; border-radius: 10px; }
+        .insight-box { background: linear-gradient(135deg, #667eea22, #764ba222); border: 1px solid #667eea44; padding: 15px; border-radius: 10px; margin: 10px 0; }
+        .vs-box { display: flex; justify-content: space-around; align-items: center; padding: 20px; }
+        .vs-item { text-align: center; }
+        .vs-divider { font-size: 24px; color: #666; }
+        .progress-bar { height: 8px; background: #333; border-radius: 4px; overflow: hidden; margin-top: 5px; }
+        .progress-fill { height: 100%; border-radius: 4px; }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; }
+        .small { font-size: 12px; color: #888; }
+        .ranking { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #333; }
+        .rank-num { width: 28px; height: 28px; background: #667eea; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 14px; }
+        .rank-num.gold { background: #FFD700; color: #333; }
+        .rank-num.silver { background: #C0C0C0; color: #333; }
+        .rank-num.bronze { background: #CD7F32; color: #fff; }
+    </style>
+</head>
+<body>
+
+<!-- ==================== PAGE 1: 개요 ==================== -->
+<div class="page">
+    <div class="page-title">📊 영어학습 서비스 VOC 분석 리포트</div>
+
+    <!-- 핵심 지표 -->
+    <div class="grid-4" style="margin-bottom: 25px;">
+        <div class="number-box">
+            <div class="stat-big">7,604</div>
+            <div class="stat-label">총 분석 데이터</div>
+        </div>
+        <div class="number-box">
+            <div class="stat-big">10</div>
+            <div class="stat-label">분석 서비스 수</div>
+        </div>
+        <div class="number-box">
+            <div class="stat-big">1,631</div>
+            <div class="stat-label">링글 데이터</div>
+        </div>
+        <div class="number-box">
+            <div class="stat-big" style="color: #FF6B6B;">3.19</div>
+            <div class="stat-label">링글 평균 평점</div>
+        </div>
+    </div>
+
+    <div class="grid-2">
+        <!-- 서비스별 데이터 현황 -->
+        <div class="card">
+            <div class="card-title">📈 서비스별 데이터 현황</div>
+            <table>
+                <tr><th>서비스</th><th>데이터</th><th>평점</th><th>상태</th></tr>
+                <tr><td><strong>Ringle</strong></td><td>1,631건</td><td class="highlight">3.19</td><td><span class="tag tag-warning">주의</span></td></tr>
+                <tr><td>Uphone</td><td>1,241건</td><td class="highlight-green">4.35</td><td><span class="tag tag-success">양호</span></td></tr>
+                <tr><td>Santa</td><td>810건</td><td>3.37</td><td><span class="tag tag-warning">주의</span></td></tr>
+                <tr><td>Hackers</td><td>729건</td><td class="highlight-green">4.34</td><td><span class="tag tag-success">양호</span></td></tr>
+                <tr><td>Malhae</td><td>665건</td><td class="highlight-green">4.34</td><td><span class="tag tag-success">양호</span></td></tr>
+                <tr><td>Yanadu</td><td>630건</td><td class="highlight">2.87</td><td><span class="tag tag-danger">위험</span></td></tr>
+                <tr><td>Cake</td><td>598건</td><td class="highlight-green">4.17</td><td><span class="tag tag-success">양호</span></td></tr>
+                <tr><td>Carrot</td><td>556건</td><td class="highlight-green">4.65</td><td><span class="tag tag-success">최고</span></td></tr>
+                <tr><td>MaxAI</td><td>506건</td><td class="highlight-green">4.07</td><td><span class="tag tag-success">양호</span></td></tr>
+                <tr><td>Pagoda</td><td>238건</td><td class="highlight">1.96</td><td><span class="tag tag-danger">위험</span></td></tr>
+            </table>
+        </div>
+
+        <!-- 링글 소스별 분포 -->
+        <div class="card">
+            <div class="card-title">📱 링글 데이터 소스 분포 (n=1,631)</div>
+
+            <div style="margin-bottom: 15px;">
+                <div class="flex-between"><span>커뮤니티 (블라인드 등)</span><span><strong>461건 (28.3%)</strong></span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 28.3%; background: #667eea;"></div></div>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <div class="flex-between"><span>블로그 (네이버, 티스토리)</span><span><strong>447건 (27.4%)</strong></span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 27.4%; background: #4ECDC4;"></div></div>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <div class="flex-between"><span>뉴스</span><span><strong>326건 (20.0%)</strong></span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 20%; background: #FFEAA7;"></div></div>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <div class="flex-between"><span>앱 리뷰 (PlayStore, AppStore)</span><span><strong class="highlight">262건 (16.1%)</strong></span></div>
+                <div class="progress-bar"><div class="progress-fill bar-red" style="width: 16.1%;"></div></div>
+            </div>
+            <div style="margin-bottom: 15px;">
+                <div class="flex-between"><span>SNS (YouTube)</span><span><strong>135건 (8.3%)</strong></span></div>
+                <div class="progress-bar"><div class="progress-fill" style="width: 8.3%; background: #96CEB4;"></div></div>
+            </div>
+
+            <div class="insight-box" style="margin-top: 20px;">
+                <strong>💡 인사이트:</strong> 링글은 커뮤니티/블로그 비중(55.7%)이 높아 <br>
+                → 실사용자의 심층적인 후기가 많음
+            </div>
+        </div>
+    </div>
+
+    <!-- 핵심 발견 -->
+    <div class="card" style="margin-top: 20px;">
+        <div class="card-title">🔥 핵심 발견 3가지</div>
+        <div class="grid-3">
+            <div class="insight-box">
+                <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">1. 앱이 발목 잡는다</div>
+                <div class="grid-2" style="gap: 10px;">
+                    <div class="number-box">
+                        <div style="font-size: 24px; color: #4ECDC4;">80%</div>
+                        <div class="small">블로그 긍정률</div>
+                    </div>
+                    <div class="number-box">
+                        <div style="font-size: 24px; color: #FF6B6B;">50%</div>
+                        <div class="small">앱 리뷰 긍정률</div>
+                    </div>
+                </div>
+                <div class="small" style="margin-top: 10px;">→ 앱 리뷰 1점: 72건(27.5%)</div>
+            </div>
+            <div class="insight-box">
+                <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">2. 스픽이 최대 위협</div>
+                <div class="number-box">
+                    <div style="font-size: 32px; color: #FF6B6B;">123회</div>
+                    <div class="small">링글 리뷰에서 스픽 언급</div>
+                </div>
+                <div class="small" style="margin-top: 10px;">→ 2위 캠블리(104회) 대비 18% ↑</div>
+            </div>
+            <div class="insight-box">
+                <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">3. 비즈니스 영어 기회</div>
+                <div class="number-box">
+                    <div style="font-size: 32px; color: #4ECDC4;">730건</div>
+                    <div class="small">비즈니스 니즈 언급</div>
+                </div>
+                <div class="small" style="margin-top: 10px;">→ 발표(152) + 면접(216) + 회의(170) + 이메일(192)</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== PAGE 2: 페인포인트 ==================== -->
+<div class="page">
+    <div class="page-title">😤 페인포인트 상세 분석</div>
+
+    <div class="grid-2">
+        <!-- 링글 페인포인트 -->
+        <div class="card">
+            <div class="card-title">📊 링글 페인포인트 TOP 8 (n=1,631)</div>
+            <table>
+                <tr><th>#</th><th>페인포인트</th><th>언급수</th><th>비율</th><th>시각화</th></tr>
+                <tr>
+                    <td><span class="rank-num gold">1</span></td>
+                    <td><strong>튜터 퀄리티 편차</strong></td>
+                    <td>907건</td>
+                    <td class="highlight">55.6%</td>
+                    <td><div class="bar" style="width: 111px;"></div></td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num silver">2</span></td>
+                    <td><strong>AI 관련 문제</strong></td>
+                    <td>763건</td>
+                    <td class="highlight">46.8%</td>
+                    <td><div class="bar" style="width: 94px;"></div></td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num bronze">3</span></td>
+                    <td><strong>가격 비쌈</strong></td>
+                    <td>695건</td>
+                    <td class="highlight">42.6%</td>
+                    <td><div class="bar" style="width: 85px;"></div></td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num">4</span></td>
+                    <td>콘텐츠 부족</td>
+                    <td>574건</td>
+                    <td>35.2%</td>
+                    <td><div class="bar" style="width: 70px;"></div></td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num">5</span></td>
+                    <td>피드백 불만</td>
+                    <td>552건</td>
+                    <td>33.8%</td>
+                    <td><div class="bar" style="width: 68px;"></div></td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num">6</span></td>
+                    <td>예약 어려움</td>
+                    <td>254건</td>
+                    <td>15.6%</td>
+                    <td><div class="bar" style="width: 31px;"></div></td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num">7</span></td>
+                    <td>환불 문제</td>
+                    <td>82건</td>
+                    <td>5.0%</td>
+                    <td><div class="bar" style="width: 10px;"></div></td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num">8</span></td>
+                    <td>앱 오류/버그</td>
+                    <td>81건</td>
+                    <td>5.0%</td>
+                    <td><div class="bar bar-red" style="width: 10px;"></div></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 실제 유저 목소리 -->
+        <div class="card">
+            <div class="card-title">💬 실제 유저 목소리</div>
+
+            <div style="margin-bottom: 15px;">
+                <div class="tag tag-danger">튜터 퀄리티</div>
+                <div class="quote">"선생님들의 퀄리티가 계속 떨어지는거 같습니다. 후기 피드백을 수업 평가 그대로 붙여넣기 하는 분들도 많고..."</div>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <div class="tag tag-danger">AI 문제</div>
+                <div class="quote">"AI튜터 관련 메뉴들이 터치가 1도 안먹네요. 수업진행을 할수가없는데 기간은 가고..."</div>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <div class="tag tag-warning">가격 부담</div>
+                <div class="quote">"비싼 비용내고 대접 못받는 기분입니다. 운영시간은 낮에만 운영해서 멘토가 노쇼해도 할 수 있는게 없음."</div>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <div class="tag tag-warning">예약 어려움</div>
+                <div class="quote">"튜터 스케줄 오픈 알림도 뜨고 버튼이 활성화 되어있는데도 예약하기 버튼을 누르면 스케줄이 마감되었다고..."</div>
+            </div>
+
+            <div style="margin-bottom: 15px;">
+                <div class="tag tag-danger">앱 오류</div>
+                <div class="quote">"앱 진짜 너무 불안정해요. 휴대폰 셋팅이 영어로 바뀌어서 그런지 로그인도 안됨ㅋㅋ"</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 앱 리뷰 평점 분포 -->
+    <div class="card" style="margin-top: 20px;">
+        <div class="card-title">⭐ 링글 앱 리뷰 평점 분포 (n=262)</div>
+        <div class="grid-2">
+            <div>
+                <table>
+                    <tr><th>평점</th><th>건수</th><th>비율</th><th>시각화</th></tr>
+                    <tr><td>⭐ 1점</td><td class="highlight"><strong>72건</strong></td><td class="highlight"><strong>27.5%</strong></td><td><div class="bar bar-red" style="width: 55px;"></div></td></tr>
+                    <tr><td>⭐⭐ 2점</td><td>28건</td><td>10.7%</td><td><div class="bar bar-red" style="width: 21px;"></div></td></tr>
+                    <tr><td>⭐⭐⭐ 3점</td><td>32건</td><td>12.2%</td><td><div class="bar" style="width: 24px;"></div></td></tr>
+                    <tr><td>⭐⭐⭐⭐ 4점</td><td>39건</td><td>14.9%</td><td><div class="bar bar-green" style="width: 30px;"></div></td></tr>
+                    <tr><td>⭐⭐⭐⭐⭐ 5점</td><td class="highlight-green"><strong>91건</strong></td><td class="highlight-green"><strong>34.7%</strong></td><td><div class="bar bar-green" style="width: 69px;"></div></td></tr>
+                </table>
+            </div>
+            <div>
+                <div class="insight-box">
+                    <strong>📊 양극화 현상</strong><br><br>
+                    <div class="vs-box">
+                        <div class="vs-item">
+                            <div style="font-size: 36px; color: #FF6B6B;">38.2%</div>
+                            <div class="small">1-2점 (부정)</div>
+                        </div>
+                        <div class="vs-divider">vs</div>
+                        <div class="vs-item">
+                            <div style="font-size: 36px; color: #4ECDC4;">49.6%</div>
+                            <div class="small">4-5점 (긍정)</div>
+                        </div>
+                    </div>
+                    <div class="small" style="margin-top: 15px; text-align: center;">
+                        → 서비스는 좋지만 <span class="highlight">앱 품질이 평판을 깎는 중</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== PAGE 3: 유저 세그먼트 ==================== -->
+<div class="page">
+    <div class="page-title">👥 유저 세그먼트 분석</div>
+
+    <div class="grid-2">
+        <!-- 링글 유저 세그먼트 -->
+        <div class="card">
+            <div class="card-title">📊 링글 유저 세그먼트 (n=1,631)</div>
+            <table>
+                <tr><th>#</th><th>세그먼트</th><th>언급수</th><th>비율</th><th>시각화</th></tr>
+                <tr>
+                    <td><span class="rank-num gold">1</span></td>
+                    <td><strong>직장인 - 업무</strong></td>
+                    <td>1,524건</td>
+                    <td class="highlight-green"><strong>93.4%</strong></td>
+                    <td><div class="bar bar-green" style="width: 187px;"></div></td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num silver">2</span></td>
+                    <td><strong>직장인 - 이직</strong></td>
+                    <td>746건</td>
+                    <td>45.7%</td>
+                    <td><div class="bar" style="width: 91px;"></div></td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num bronze">3</span></td>
+                    <td>고급 학습자</td>
+                    <td>557건</td>
+                    <td>34.2%</td>
+                    <td><div class="bar" style="width: 68px;"></div></td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num">4</span></td>
+                    <td>초보 입문자</td>
+                    <td>447건</td>
+                    <td>27.4%</td>
+                    <td><div class="bar" style="width: 55px;"></div></td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num">5</span></td>
+                    <td>유학 준비생</td>
+                    <td>422건</td>
+                    <td>25.9%</td>
+                    <td><div class="bar" style="width: 52px;"></div></td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num">6</span></td>
+                    <td>취업 준비생</td>
+                    <td>259건</td>
+                    <td>15.9%</td>
+                    <td><div class="bar" style="width: 32px;"></div></td>
+                </tr>
+            </table>
+
+            <div class="insight-box" style="margin-top: 15px;">
+                <strong>💡 핵심 타겟:</strong> 링글 유저의 <span class="highlight-green">93.4%</span>가 직장인<br>
+                → 비즈니스 영어 특화가 필수
+            </div>
+        </div>
+
+        <!-- 비즈니스 니즈 상세 -->
+        <div class="card">
+            <div class="card-title">💼 비즈니스 영어 니즈 상세</div>
+            <table>
+                <tr><th>니즈</th><th>언급수</th><th>비율</th><th>AI 기회</th></tr>
+                <tr>
+                    <td><strong>🎤 면접 준비</strong></td>
+                    <td class="highlight-green"><strong>216건</strong></td>
+                    <td class="highlight-green"><strong>13.2%</strong></td>
+                    <td>AI 면접관</td>
+                </tr>
+                <tr>
+                    <td><strong>✉️ 이메일 작성</strong></td>
+                    <td>192건</td>
+                    <td>11.8%</td>
+                    <td>AI 이메일 첨삭</td>
+                </tr>
+                <tr>
+                    <td><strong>🎙️ 발표 연습</strong></td>
+                    <td>152건</td>
+                    <td>9.3%</td>
+                    <td>AI 발표 코치</td>
+                </tr>
+                <tr>
+                    <td><strong>🤝 회의 영어</strong></td>
+                    <td>170건</td>
+                    <td>10.4%</td>
+                    <td>AI 회의 롤플레이</td>
+                </tr>
+            </table>
+
+            <div style="margin-top: 20px; padding: 15px; background: #252540; border-radius: 10px;">
+                <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">📊 비즈니스 니즈 합계</div>
+                <div class="vs-box">
+                    <div class="vs-item">
+                        <div style="font-size: 42px; color: #4ECDC4;">730건</div>
+                        <div class="small">비즈니스 니즈 총합</div>
+                    </div>
+                    <div class="vs-item">
+                        <div style="font-size: 42px; color: #667eea;">44.8%</div>
+                        <div class="small">전체 대비 비율</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 페르소나 카드 -->
+    <div class="card" style="margin-top: 20px;">
+        <div class="card-title">👤 링글 핵심 페르소나 4</div>
+        <div class="grid-4">
+            <div style="background: #252540; padding: 20px; border-radius: 10px; text-align: center;">
+                <div style="font-size: 48px;">👔</div>
+                <div style="font-size: 18px; font-weight: bold; margin: 10px 0;">커리어 직장인</div>
+                <div style="font-size: 32px; color: #4ECDC4; font-weight: bold;">93.4%</div>
+                <div class="small" style="margin-top: 10px;">비즈니스 영어<br>발표/회의/이메일</div>
+                <div style="margin-top: 10px;"><span class="tag tag-success">핵심 타겟</span></div>
+            </div>
+            <div style="background: #252540; padding: 20px; border-radius: 10px; text-align: center;">
+                <div style="font-size: 48px;">📈</div>
+                <div style="font-size: 18px; font-weight: bold; margin: 10px 0;">이직 준비자</div>
+                <div style="font-size: 32px; color: #667eea; font-weight: bold;">45.7%</div>
+                <div class="small" style="margin-top: 10px;">영어 면접<br>커리어 발전</div>
+                <div style="margin-top: 10px;"><span class="tag tag-warning">성장 타겟</span></div>
+            </div>
+            <div style="background: #252540; padding: 20px; border-radius: 10px; text-align: center;">
+                <div style="font-size: 48px;">✈️</div>
+                <div style="font-size: 18px; font-weight: bold; margin: 10px 0;">유학 준비생</div>
+                <div style="font-size: 32px; color: #667eea; font-weight: bold;">25.9%</div>
+                <div class="small" style="margin-top: 10px;">MBA/대학원<br>토플/아이엘츠</div>
+                <div style="margin-top: 10px;"><span class="tag tag-warning">니치 타겟</span></div>
+            </div>
+            <div style="background: #252540; padding: 20px; border-radius: 10px; text-align: center;">
+                <div style="font-size: 48px;">🎓</div>
+                <div style="font-size: 18px; font-weight: bold; margin: 10px 0;">취업 준비생</div>
+                <div style="font-size: 32px; color: #667eea; font-weight: bold;">15.9%</div>
+                <div class="small" style="margin-top: 10px;">오픽/토스<br>영어 면접</div>
+                <div style="margin-top: 10px;"><span class="tag tag-danger">가격 민감</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== PAGE 4: 경쟁 분석 ==================== -->
+<div class="page">
+    <div class="page-title">⚔️ 경쟁사 분석</div>
+
+    <div class="grid-2">
+        <!-- 경쟁사 언급 순위 -->
+        <div class="card">
+            <div class="card-title">📊 링글 리뷰 내 경쟁사 언급 순위</div>
+            <table>
+                <tr><th>#</th><th>경쟁사</th><th>언급수</th><th>비교 포인트</th></tr>
+                <tr>
+                    <td><span class="rank-num gold">1</span></td>
+                    <td><strong class="highlight">스픽 (Speak)</strong></td>
+                    <td><strong class="highlight">123회</strong></td>
+                    <td>AI 무제한, 저가</td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num silver">2</span></td>
+                    <td><strong>캠블리 (Cambly)</strong></td>
+                    <td><strong>104회</strong></td>
+                    <td>즉시 연결, 유연성</td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num bronze">3</span></td>
+                    <td>튜터링</td>
+                    <td>47회</td>
+                    <td>튜터 서비스</td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num">4</span></td>
+                    <td>엔구 (Engoo)</td>
+                    <td>39회</td>
+                    <td>저가 화상영어</td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num">5</span></td>
+                    <td>듀오링고</td>
+                    <td>37회</td>
+                    <td>무료, 게이미피케이션</td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num">6</span></td>
+                    <td>말해보카</td>
+                    <td>22회</td>
+                    <td>AI 회화</td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num">7</span></td>
+                    <td>케이크</td>
+                    <td>18회</td>
+                    <td>숏폼 콘텐츠</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 스픽 vs 링글 -->
+        <div class="card">
+            <div class="card-title">🆚 스픽 vs 링글 상세 비교</div>
+
+            <div class="vs-box" style="background: #252540; border-radius: 10px; margin-bottom: 15px;">
+                <div class="vs-item">
+                    <div style="font-size: 24px; font-weight: bold; color: #FF6B6B;">Speak</div>
+                    <div class="small">AI 무제한</div>
+                </div>
+                <div class="vs-divider">VS</div>
+                <div class="vs-item">
+                    <div style="font-size: 24px; font-weight: bold; color: #667eea;">Ringle</div>
+                    <div class="small">명문대 튜터</div>
+                </div>
+            </div>
+
+            <table>
+                <tr><th>항목</th><th>스픽</th><th>링글</th></tr>
+                <tr><td>가격</td><td class="highlight-green">월 4-5만원</td><td class="highlight">월 15-20만원</td></tr>
+                <tr><td>튜터</td><td>AI</td><td class="highlight-green">명문대 원어민</td></tr>
+                <tr><td>발화량</td><td class="highlight-green">무제한</td><td>수업시간 한정</td></tr>
+                <tr><td>피드백</td><td>AI 자동</td><td class="highlight-green">전문가 직접</td></tr>
+                <tr><td>24시간</td><td class="highlight-green">✅</td><td>❌ (예약 필요)</td></tr>
+            </table>
+
+            <div class="insight-box" style="margin-top: 15px;">
+                <strong>⚠️ 이탈 패턴:</strong><br>
+                "가격 부담 → AI 무제한으로"<br>
+                <span class="small">→ 가격 민감 고객이 스픽으로 이동 중</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 이탈/유입 요인 -->
+    <div class="card" style="margin-top: 20px;">
+        <div class="card-title">🚪 링글 이탈 요인 vs 유입 요인</div>
+        <div class="grid-2">
+            <div style="background: linear-gradient(135deg, #FF6B6B22, #ee5a5a22); border: 1px solid #FF6B6B44; padding: 20px; border-radius: 10px;">
+                <div style="font-size: 18px; font-weight: bold; color: #FF6B6B; margin-bottom: 15px;">🚪 이탈 요인 (링글 → 타사)</div>
+                <div class="ranking">
+                    <span class="rank-num" style="background: #FF6B6B;">1</span>
+                    <div><strong>가격 부담</strong> - 695건 (42.6%)</div>
+                </div>
+                <div class="ranking">
+                    <span class="rank-num" style="background: #FF6B6B;">2</span>
+                    <div><strong>예약 어려움</strong> - 254건 (15.6%)</div>
+                </div>
+                <div class="ranking">
+                    <span class="rank-num" style="background: #FF6B6B;">3</span>
+                    <div><strong>앱 품질 문제</strong> - 81건 (5.0%)</div>
+                </div>
+                <div class="quote" style="margin-top: 15px;">"너무 비싸서 스픽으로 갈아탔어요"</div>
+            </div>
+            <div style="background: linear-gradient(135deg, #4ECDC422, #44a8a022); border: 1px solid #4ECDC444; padding: 20px; border-radius: 10px;">
+                <div style="font-size: 18px; font-weight: bold; color: #4ECDC4; margin-bottom: 15px;">🎯 유입 요인 (타사 → 링글)</div>
+                <div class="ranking">
+                    <span class="rank-num" style="background: #4ECDC4; color: #333;">1</span>
+                    <div><strong>튜터 품질</strong> - 907건 (55.6%)</div>
+                </div>
+                <div class="ranking">
+                    <span class="rank-num" style="background: #4ECDC4; color: #333;">2</span>
+                    <div><strong>체계적 피드백</strong> - 552건 (33.8%)</div>
+                </div>
+                <div class="ranking">
+                    <span class="rank-num" style="background: #4ECDC4; color: #333;">3</span>
+                    <div><strong>명문대 브랜드</strong> - 신뢰도</div>
+                </div>
+                <div class="quote" style="margin-top: 15px;">"캠블리 튜터보다 확실히 퀄리티가 좋아요"</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== PAGE 5: 기능 요청 & 전략 ==================== -->
+<div class="page">
+    <div class="page-title">💡 숨겨진 니즈 & 전략 제언</div>
+
+    <div class="grid-2">
+        <!-- 기능 요청 -->
+        <div class="card">
+            <div class="card-title">🔮 유저가 원하는 기능 (숨겨진 니즈)</div>
+            <table>
+                <tr><th>#</th><th>기능 요청</th><th>언급수</th><th>비율</th><th>우선순위</th></tr>
+                <tr>
+                    <td><span class="rank-num gold">1</span></td>
+                    <td><strong>녹음/복습 기능</strong></td>
+                    <td class="highlight-green"><strong>255건</strong></td>
+                    <td><strong>15.6%</strong></td>
+                    <td><span class="tag tag-danger">높음</span></td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num silver">2</span></td>
+                    <td><strong>면접 준비</strong></td>
+                    <td>216건</td>
+                    <td>13.2%</td>
+                    <td><span class="tag tag-danger">높음</span></td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num bronze">3</span></td>
+                    <td><strong>이메일 작성</strong></td>
+                    <td>192건</td>
+                    <td>11.8%</td>
+                    <td><span class="tag tag-warning">중간</span></td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num">4</span></td>
+                    <td>맞춤 커리큘럼</td>
+                    <td>190건</td>
+                    <td>11.6%</td>
+                    <td><span class="tag tag-warning">중간</span></td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num">5</span></td>
+                    <td>회의 영어</td>
+                    <td>170건</td>
+                    <td>10.4%</td>
+                    <td><span class="tag tag-warning">중간</span></td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num">6</span></td>
+                    <td>발표 연습</td>
+                    <td>152건</td>
+                    <td>9.3%</td>
+                    <td><span class="tag tag-warning">중간</span></td>
+                </tr>
+                <tr>
+                    <td><span class="rank-num">7</span></td>
+                    <td>오프라인 기능</td>
+                    <td>120건</td>
+                    <td>7.4%</td>
+                    <td><span class="tag tag-success">낮음</span></td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 전략 제언 -->
+        <div class="card">
+            <div class="card-title">🎯 전략 제언</div>
+
+            <div style="margin-bottom: 20px;">
+                <div style="font-size: 16px; font-weight: bold; color: #FF6B6B; margin-bottom: 10px;">🔴 즉시 실행</div>
+                <div class="ranking">
+                    <span class="rank-num" style="background: #FF6B6B;">1</span>
+                    <div>
+                        <strong>앱 안정성 개선</strong><br>
+                        <span class="small">근거: 앱 리뷰 1점 72건(27.5%), 부정률 38.2%</span>
+                    </div>
+                </div>
+                <div class="ranking">
+                    <span class="rank-num" style="background: #FF6B6B;">2</span>
+                    <div>
+                        <strong>"AI 무제한 발화" 마케팅</strong><br>
+                        <span class="small">근거: 스픽 123회 언급 (경쟁사 1위)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <div style="font-size: 16px; font-weight: bold; color: #FFEAA7; margin-bottom: 10px;">🟡 중기 (3-6개월)</div>
+                <div class="ranking">
+                    <span class="rank-num" style="background: #FFEAA7; color: #333;">3</span>
+                    <div>
+                        <strong>AI 비즈니스 영어 시나리오</strong><br>
+                        <span class="small">근거: 비즈니스 니즈 730건 (44.8%)</span>
+                    </div>
+                </div>
+                <div class="ranking">
+                    <span class="rank-num" style="background: #FFEAA7; color: #333;">4</span>
+                    <div>
+                        <strong>가격 라인업 다양화</strong><br>
+                        <span class="small">근거: 가격 불만 695건 (42.6%)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div style="font-size: 16px; font-weight: bold; color: #4ECDC4; margin-bottom: 10px;">🟢 장기</div>
+                <div class="ranking">
+                    <span class="rank-num" style="background: #4ECDC4; color: #333;">5</span>
+                    <div>
+                        <strong>토익/오픽 AI 모의고사</strong><br>
+                        <span class="small">근거: 취준생 타겟 확장 (15.9%)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 최종 요약 -->
+    <div class="card" style="margin-top: 20px; background: linear-gradient(135deg, #667eea22, #764ba222); border: 2px solid #667eea;">
+        <div class="card-title" style="font-size: 20px;">📋 분석 결과 최종 요약</div>
+        <div class="grid-4" style="margin-top: 15px;">
+            <div class="number-box">
+                <div class="stat-medium" style="color: #FF6B6B;">38.2%</div>
+                <div class="stat-label">앱 리뷰 부정률</div>
+                <div class="small">→ 앱 개선 시급</div>
+            </div>
+            <div class="number-box">
+                <div class="stat-medium" style="color: #FF6B6B;">123회</div>
+                <div class="stat-label">스픽 언급</div>
+                <div class="small">→ 최대 경쟁자</div>
+            </div>
+            <div class="number-box">
+                <div class="stat-medium" style="color: #4ECDC4;">93.4%</div>
+                <div class="stat-label">직장인 유저</div>
+                <div class="small">→ 비즈니스 특화</div>
+            </div>
+            <div class="number-box">
+                <div class="stat-medium" style="color: #4ECDC4;">730건</div>
+                <div class="stat-label">비즈니스 니즈</div>
+                <div class="small">→ AI 시나리오</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 20px; padding: 20px; background: #1a1a2e; border-radius: 10px; text-align: center;">
+            <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">💡 한 줄 요약</div>
+            <div style="font-size: 16px; line-height: 1.6;">
+                링글은 <span class="highlight-green">프리미엄 비즈니스 영어</span>에서 강점이 있지만,<br>
+                <span class="highlight">앱 품질 문제</span>와 <span class="highlight">스픽의 저가 AI 공세</span>에 대응 필요.<br>
+                <span style="color: #667eea; font-weight: bold;">AI 비즈니스 영어 시나리오 + 가격 라인업 다양화</span>가 핵심 전략.
+            </div>
+        </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 20px; color: #666; font-size: 12px;">
+        Generated by Claude Code | 데이터: 10개 서비스 7,604건 | 2026-01-18
+    </div>
+</div>
+
+</body>
+</html>

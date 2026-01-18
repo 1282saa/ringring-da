@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>영어학습 서비스 VOC 분석 대시보드</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; color: #333; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        h1 { text-align: center; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; margin-bottom: 30px; border-radius: 10px; }
+        h1 small { display: block; font-size: 14px; font-weight: normal; margin-top: 10px; opacity: 0.9; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
+        .card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .card h2 { font-size: 18px; margin-bottom: 15px; color: #333; border-bottom: 2px solid #667eea; padding-bottom: 10px; }
+        .card img { width: 100%; height: auto; border-radius: 8px; }
+        .insight-box { background: #f8f9ff; border-left: 4px solid #667eea; padding: 15px; margin: 10px 0; border-radius: 0 8px 8px 0; }
+        .insight-box h3 { color: #667eea; margin-bottom: 8px; }
+        .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 30px; }
+        .stat-card { background: white; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .stat-card .number { font-size: 32px; font-weight: bold; color: #667eea; }
+        .stat-card .label { font-size: 14px; color: #666; margin-top: 5px; }
+        .persona-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        .persona { background: #f8f9ff; padding: 15px; border-radius: 8px; }
+        .persona .emoji { font-size: 32px; }
+        .persona .name { font-weight: bold; margin: 5px 0; }
+        .persona .pct { color: #667eea; font-size: 20px; font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #eee; }
+        th { background: #f8f9ff; }
+        .tag { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 12px; margin: 2px; }
+        .tag-red { background: #ffe0e0; color: #c00; }
+        .tag-green { background: #e0ffe0; color: #060; }
+        .tag-yellow { background: #fff8e0; color: #960; }
+        .full-width { grid-column: 1 / -1; }
+        .highlight { background: #fff3cd; padding: 2px 5px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>
+            🎯 영어학습 서비스 VOC 분석 대시보드
+            <small>2026 링글 공모전 | 10개 서비스 7,604건 분석 | 2026-01-18</small>
+        </h1>
+
+        <!-- 핵심 지표 -->
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="number">7,604</div>
+                <div class="label">분석 데이터</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">10개</div>
+                <div class="label">경쟁 서비스</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">66.6%</div>
+                <div class="label">링글 긍정률</div>
+            </div>
+            <div class="stat-card">
+                <div class="number">99회</div>
+                <div class="label">스픽 언급 (1위)</div>
+            </div>
+        </div>
+
+        <!-- 핵심 발견 -->
+        <div class="card full-width" style="margin-bottom: 20px;">
+            <h2>🔥 핵심 발견 3가지</h2>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                <div class="insight-box">
+                    <h3>1. 앱이 발목을 잡고 있다</h3>
+                    <p>블로그/커뮤니티 긍정률 80% vs <span class="highlight">앱 리뷰 50%</span></p>
+                    <p style="margin-top:10px; font-size:14px; color:#666;">→ 앱 품질이 신규 고객 첫인상 망침</p>
+                </div>
+                <div class="insight-box">
+                    <h3>2. 스픽이 최대 경쟁자</h3>
+                    <p>링글 리뷰에서 <span class="highlight">스픽 99회 언급</span> (1위)</p>
+                    <p style="margin-top:10px; font-size:14px; color:#666;">→ "가격 부담 → AI 무제한으로" 이탈</p>
+                </div>
+                <div class="insight-box">
+                    <h3>3. 비즈니스 영어가 기회</h3>
+                    <p>발표(452), 면접(288), 회의(236) <span class="highlight">니즈 높음</span></p>
+                    <p style="margin-top:10px; font-size:14px; color:#666;">→ AI 비즈니스 시나리오 = 차별화</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <!-- 페인포인트 -->
+            <div class="card">
+                <h2>📊 서비스별 페인포인트 비교</h2>
+                <img src="01_painpoint_comparison.png" alt="페인포인트 비교">
+                <p style="margin-top:10px; font-size:14px; color:#666;">
+                    링글: 가격(34.3%), 튜터(45.7%), AI(38.8%) 언급 높음
+                </p>
+            </div>
+
+            <!-- 유저 세그먼트 -->
+            <div class="card">
+                <h2>👥 유저 세그먼트</h2>
+                <img src="02_user_segments.png" alt="유저 세그먼트">
+                <p style="margin-top:10px; font-size:14px; color:#666;">
+                    링글 유저의 56%가 직장인 업무 목적
+                </p>
+            </div>
+
+            <!-- 감정 분포 -->
+            <div class="card">
+                <h2>😊 서비스별 긍정/부정 비율</h2>
+                <img src="04_sentiment_comparison.png" alt="감정 분포">
+                <p style="margin-top:10px; font-size:14px; color:#666;">
+                    링글 긍정률 66.6% (10개 중 6위)
+                </p>
+            </div>
+
+            <!-- 포지셔닝 -->
+            <div class="card">
+                <h2>🗺️ 경쟁 포지셔닝 맵</h2>
+                <img src="05_positioning_map.png" alt="포지셔닝 맵">
+                <p style="margin-top:10px; font-size:14px; color:#666;">
+                    링글: 고가 + 튜터 기반 프리미엄 포지션
+                </p>
+            </div>
+
+            <!-- 페르소나 -->
+            <div class="card">
+                <h2>👤 링글 핵심 페르소나</h2>
+                <div class="persona-grid">
+                    <div class="persona">
+                        <span class="emoji">👔</span>
+                        <div class="name">커리어 직장인</div>
+                        <div class="pct">56%</div>
+                        <div style="font-size:13px; color:#666; margin-top:5px;">비즈니스 영어, 발표/회의</div>
+                    </div>
+                    <div class="persona">
+                        <span class="emoji">🌱</span>
+                        <div class="name">영어 입문자</div>
+                        <div class="pct">41%</div>
+                        <div style="font-size:13px; color:#666; margin-top:5px;">부담없는 시작, 기초 회화</div>
+                    </div>
+                    <div class="persona">
+                        <span class="emoji">🎓</span>
+                        <div class="name">취업준비생</div>
+                        <div class="pct">23%</div>
+                        <div style="font-size:13px; color:#666; margin-top:5px;">면접/오픽 대비</div>
+                    </div>
+                    <div class="persona">
+                        <span class="emoji">✈️</span>
+                        <div class="name">유학준비생</div>
+                        <div class="pct">21%</div>
+                        <div style="font-size:13px; color:#666; margin-top:5px;">MBA/대학원 준비</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 전략 제언 -->
+            <div class="card">
+                <h2>💡 전략 제언</h2>
+                <table>
+                    <tr>
+                        <th>우선순위</th>
+                        <th>전략</th>
+                        <th>근거</th>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-red">즉시</span></td>
+                        <td>앱 안정성 개선</td>
+                        <td>앱 리뷰 부정률 38%</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-red">즉시</span></td>
+                        <td>AI 무제한 마케팅</td>
+                        <td>스픽 대응</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-yellow">중기</span></td>
+                        <td>AI 비즈니스 영어</td>
+                        <td>발표/면접 니즈</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-yellow">중기</span></td>
+                        <td>가격 라인업 다양화</td>
+                        <td>가격 이탈 방지</td>
+                    </tr>
+                    <tr>
+                        <td><span class="tag tag-green">장기</span></td>
+                        <td>토익/오픽 AI 모의고사</td>
+                        <td>시험 시장 진입</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <p style="text-align:center; margin-top:30px; color:#999; font-size:14px;">
+            Generated by Claude Code | 2026-01-18
+        </p>
+    </div>
+</body>
+</html>

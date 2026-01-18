@@ -1,0 +1,11 @@
+company,total,positive,negative,neutral,positive_pct,negative_pct,neutral_pct,avg_rating,source_distribution
+carrot,556,487,41,28,87.6,7.4,5.0,4.65,"{'review': 466, 'blog': 45, 'community': 35, 'news': 10}"
+hackers,729,580,94,55,79.6,12.9,7.5,4.34,"{'review': 572, 'blog': 94, 'community': 43, 'news': 20}"
+uphone,1241,977,163,101,78.7,13.1,8.1,4.35,"{'app_review': 1089, 'sns': 56, 'blog': 53, 'news': 26, 'community': 17}"
+cake,598,460,98,40,76.9,16.4,6.7,4.17,"{'review': 460, 'blog': 83, 'community': 55}"
+malhae,665,509,77,79,76.5,11.6,11.9,4.34,"{'review': 535, 'blog': 57, 'sns': 54, 'community': 11, 'news': 8}"
+ringle,1631,1087,257,287,66.6,15.8,17.6,3.19,"{'community': 461, 'blog': 447, 'news': 326, 'review': 262, 'sns': 135}"
+maxai,506,325,85,96,64.2,16.8,19.0,4.07,"{'app_review': 302, 'blog': 91, 'sns': 63, 'community': 37, 'news': 13}"
+santa,810,417,219,174,51.5,27.0,21.5,3.37,"{'review': 623, 'blog': 79, 'sns': 74, 'community': 21, 'news': 13}"
+yanadu,630,288,245,97,45.7,38.9,15.4,2.87,"{'review': 486, 'blog': 88, 'community': 36, 'news': 20}"
+pagoda,238,96,63,79,40.3,26.5,33.2,1.96,"{'blog': 64, 'app_review': 55, 'sns': 43, 'community': 40, 'news': 36}"
