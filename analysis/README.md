@@ -30,29 +30,60 @@
 
 ```
 analysis/
-├── README.md              ← 현재 파일
-├── reports/               ← 최종 보고서
-│   ├── 고객문제_분석보고서.docx    ★ 고객 문제 중심 보고서
-│   ├── VOC_분석_보고서_논문형식.docx   ★ 논문 형식 전체 보고서
+├── README.md                    ← 현재 파일
+│
+├── reports/                     ← 최종 보고서
+│   ├── 고객문제_분석보고서.docx      ★ 고객 문제 중심 (추천)
+│   ├── VOC_분석_보고서_논문형식.docx  ★ 논문 형식 전체 보고서
 │   ├── VOC_분석_보고서_전체.docx
-│   ├── FULL_REPORT.html
-│   ├── DASHBOARD.html
-│   ├── DASHBOARD_DETAIL.html
-│   └── REPORT_FINAL.pdf
-├── data/                  ← 분석 데이터 (CSV)
-│   ├── sentiment_distribution.csv   서비스별 감성 분석
-│   ├── painpoint_structured.csv     페인포인트 구조화
-│   ├── user_segments.csv            유저 세그먼트
-│   ├── competitor_mentions.csv      경쟁사 언급 빈도
-│   ├── hidden_needs.csv             숨겨진 니즈
-│   └── keyword_frequency_cleaned.csv 키워드 빈도
-├── visualizations/        ← 시각화 차트
-│   ├── 01_painpoint_comparison.png
-│   ├── 02_user_segments.png
-│   ├── 03_competitor_heatmap.png
-│   ├── 04_sentiment_comparison.png
-│   └── 05_positioning_map.png
-└── scripts/               ← 분석 스크립트
+│   ├── FULL_REPORT.html          8페이지 상세 대시보드
+│   ├── DASHBOARD.html            요약 대시보드
+│   ├── DASHBOARD_DETAIL.html     상세 대시보드
+│   ├── REPORT_FINAL.pdf          PDF 보고서
+│   ├── REPORT_FINAL.md           마크다운 최종 보고서
+│   ├── DEEP_ANALYSIS_REPORT.md   심층 분석 보고서
+│   ├── FINAL_INSIGHTS.md         최종 인사이트
+│   ├── QUALITATIVE_INSIGHTS.md   정성 분석 결과
+│   ├── ANALYSIS_FRAMEWORK.md     분석 프레임워크
+│   ├── VOC_ANALYSIS_REPORT.md    VOC 분석 리포트
+│   ├── DATA_COLLECTION_FRAMEWORK.md  데이터 수집 가이드
+│   ├── REVIEW_ANALYSIS_BEST_PRACTICES.md  분석 방법론
+│   ├── INSIGHT_SUMMARY.md        인사이트 요약
+│   └── detailed/                 상세 분석 문서
+│       ├── 01_keyword_frequency.md    키워드 빈도 분석
+│       ├── 01_tfidf_unique_keywords.md TF-IDF 분석
+│       ├── 02_sentiment_distribution.md 감성 분포 분석
+│       ├── 01_cooccurrence_network.md  동시출현 분석
+│       ├── 02_churn_pattern.md         이탈 패턴 분석
+│       └── 03_hidden_needs.md          숨겨진 니즈 분석
+│
+├── data/                        ← 분석 데이터 (CSV)
+│   ├── sentiment_distribution.csv    서비스별 감성 분석
+│   ├── painpoint_structured.csv      페인포인트 구조화
+│   ├── user_segments.csv             유저 세그먼트
+│   ├── competitor_mentions.csv       경쟁사 언급 빈도
+│   ├── hidden_needs.csv              숨겨진 니즈
+│   ├── keyword_frequency_cleaned.csv 키워드 빈도 (정제)
+│   ├── keyword_frequency_all.csv     키워드 빈도 (전체)
+│   ├── tfidf_unique_keywords.csv     TF-IDF 고유 키워드
+│   ├── cooccurrence_network.csv      동시출현 네트워크
+│   ├── category_frequency.csv        카테고리 빈도
+│   └── company_text_analysis_summary.csv 서비스별 요약
+│
+├── visualizations/              ← 시각화 차트 (11개)
+│   ├── 01_wordcloud.png              워드클라우드
+│   ├── 01_painpoint_comparison.png   페인포인트 비교
+│   ├── 02_keyword_frequency.png      키워드 빈도 차트
+│   ├── 02_user_segments.png          유저 세그먼트
+│   ├── 03_competitor_heatmap.png     경쟁사 히트맵
+│   ├── 03_sentiment_distribution.png 감성 분포
+│   ├── 04_keyword_network.png        키워드 네트워크
+│   ├── 04_sentiment_comparison.png   감성 비교
+│   ├── 05_competitor_heatmap.png     경쟁사 분석
+│   ├── 05_positioning_map.png        포지셔닝 맵
+│   └── 06_hidden_needs.png           숨겨진 니즈
+│
+└── scripts/                     ← 분석 스크립트
     ├── create_customer_problem_report.py
     ├── create_academic_report.py
     ├── create_docx_report.py
